@@ -556,6 +556,8 @@ nav{
 const leaders = [
   {
     id:'andre3000',
+    bio:'One half of OutKast. Known for pushing hip hop beyond its boundaries — blending funk, jazz, soul and rap into something entirely his own. Won the Grammy for Album of the Year with Speakerboxxx/The Love Below. Widely regarded as one of the greatest rappers of all time. Known for his eccentric personal style, emotional depth, and refusal to conform to what the industry expected of a Black artist from the South.',
+    roles:'Rapper · Producer · Fashion Icon · Actor',
     name:'André 3000',
     fullName:'André Lauren Benjamin',
     era:'1975 – Present',
@@ -572,6 +574,8 @@ const leaders = [
   },
   {
     id:'tiger',
+    bio:'Widely considered the greatest golfer of all time. Won 15 major championships and 82 PGA Tour titles. Became the first person of Black and Asian descent to win the Masters in 1997 — by the largest margin in tournament history. Known for his relentless competitive drive, mental toughness, and a 2019 comeback that many called the greatest in sports history.',
+    roles:'Professional Golfer',
     name:'Tiger Woods',
     fullName:'Eldrick Tont "Tiger" Woods',
     era:'1975 – Present',
@@ -587,6 +591,8 @@ const leaders = [
   },
   {
     id:'kaep',
+    bio:'Starting quarterback for the San Francisco 49ers who became a global symbol of resistance. In 2016 began kneeling during the national anthem to protest police brutality and racial injustice — a quiet act that ignited a worldwide movement. Known for sacrificing his NFL career for his principles. Later became the face of Nike's Just Do It campaign.',
+    roles:'NFL Quarterback · Civil Rights Activist',
     name:'Colin Kaepernick',
     fullName:'Colin Rand Kaepernick',
     era:'1987 – Present',
@@ -602,6 +608,8 @@ const leaders = [
   },
   {
     id:'talley',
+    bio:'One of the most powerful figures in fashion history. Served as Editor-at-Large and Creative Director of Vogue — the first African American to hold that role. Known for his commanding presence, his signature caftans, and his decades-long influence on global fashion. Used his platform to open doors for Black designers, models, and creatives at the highest levels of the industry.',
+    roles:'Fashion Editor · Author · Cultural Ambassador',
     name:'André Leon Talley',
     fullName:'André Leon Talley',
     era:'1948 – 2022',
@@ -659,14 +667,14 @@ function buildExhibits(){
         <h2 class="exhibit-name">${l.name}</h2>
         <p class="exhibit-era">${l.fullName} · ${l.era}</p>
         <div class="exhibit-divider" style="background:${l.accent}"></div>
-        <button class="generate-btn" id="gen-btn-${l.id}" onclick="generateContent('${l.id}')">
-          <div class="spinner" id="spinner-${l.id}"></div>
-          <span>✦ Generate Exhibit Content with AI</span>
-        </button>
-        <div class="ai-content" id="ai-content-${l.id}">
+        <div class="ai-content">
           <div class="ai-section">
-            <div class="ai-section-label">Historical Context</div>
-            <div class="ai-section-text ai-loading">Click Generate to load exhibit content...</div>
+            <div class="ai-section-label">Roles</div>
+            <div class="ai-section-text" style="color:var(--gold);font-size:12px;letter-spacing:.5px">${l.roles}</div>
+          </div>
+          <div class="ai-section" style="margin-top:16px">
+            <div class="ai-section-label">About</div>
+            <div class="ai-section-text">${l.bio}</div>
           </div>
         </div>
       </div>
@@ -818,20 +826,29 @@ async function generateContent(lid){
   spinner.style.display='block';
   contentEl.innerHTML='<div class="ai-loading" style="font-style:italic;color:var(--muted);font-size:13px">Generating exhibit content...</div>';
 
-  const prompt=`You are a museum curator writing exhibit content for a student leadership presentation.
+  const essayContext = {
+    'andre3000': {
+      extra: `Key facts: André grew up between East Point and Buckhead in Atlanta — two opposite socioeconomic worlds. This gave him a unique lens on inequality. He came up during the crack epidemic, mass incarceration, and a media landscape that portrayed Black men through what historians call the brute caricature — aggressive, dangerous, criminal. Hip hop at the time was dominated by East and West Coast. The South was dismissed. His leadership style is defined as transformational and authentic — he led by reshaping cultural norms through music, fashion, and identity rather than politics or formal authority. Key songs as leadership acts: Gasoline Dreams (challenging the American Dream), Babylon (critiquing systems of violence), Ms. Jackson (modeling emotional accountability and reframing Black masculinity). Scholar Tricia Rose argues hip hop was narrowed by commercialization — André pushed back against that directly.`
+    }
+  };
+  const extraContext = essayContext[lid] ? essayContext[lid].extra : '';
 
-Generate rich, engaging content about ${l.fullName} (known as ${l.name}) for a leadership museum exhibit. The theme of the museum is "Breaking Barriers & Defying Expectations."
+  const prompt=`You are a museum curator writing a leadership profile for a student presentation about leaders who broke barriers.
+
+Generate content about ${l.fullName} (known as ${l.name}) for a leadership museum exhibit themed "Breaking Barriers & Defying Expectations."
+
+${extraContext ? 'Use this research context: ' + extraContext : ''}
 
 Return ONLY a valid JSON object with exactly these fields:
 {
-  "context": "2-3 sentences about the historical/geographical/social context this leader emerged from",
-  "overview": "2-3 sentences about who they are and what they did as a leader",
-  "legacy": "2-3 sentences about how the world is different because of them",
+  "context": "2-3 sentences about the historical and social context this leader emerged from — the world they walked into",
+  "overview": "2-3 sentences about their leadership style and what they specifically did to break barriers",
+  "legacy": "2-3 sentences about how the world is concretely different because of them",
   "quote": "one powerful real quote from this person under 20 words",
-  "oneWord": "one single word that captures their essence"
+  "oneWord": "one single word that captures their leadership essence"
 }
 
-Be specific, vivid, and emotionally resonant. Write for high school students.`;
+Be specific, grounded in real facts, and emotionally resonant. Write for high school students.`;
 
   try {
     const res=await fetch('https://api.anthropic.com/v1/messages',{
@@ -863,16 +880,16 @@ Be specific, vivid, and emotionally resonant. Write for high school students.`;
 function renderContent(lid,d,accent){
   document.getElementById(`ai-content-${lid}`).innerHTML=`
     <div class="ai-section">
-      <div class="ai-section-label">Historical Context</div>
+      <div class="ai-section-label">The World They Walked Into</div>
       <div class="ai-section-text">${d.context}</div>
     </div>
     <div class="ai-quote" style="border-color:${accent}">"${d.quote}"</div>
     <div class="ai-section">
-      <div class="ai-section-label">Leadership Overview</div>
+      <div class="ai-section-label">Leadership Style & Impact</div>
       <div class="ai-section-text">${d.overview}</div>
     </div>
     <div class="ai-section">
-      <div class="ai-section-label">Legacy & World Impact</div>
+      <div class="ai-section-label">How the World Changed</div>
       <div class="ai-section-text">${d.legacy}</div>
     </div>
     <div style="margin-top:16px;display:inline-block;padding:6px 16px;border:1px solid ${accent};font-size:10px;letter-spacing:3px;text-transform:uppercase;color:${accent}">${d.oneWord}</div>
