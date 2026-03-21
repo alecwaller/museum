@@ -649,11 +649,7 @@ function buildExhibits(){
       <div class="exhibit-visual" style="background:${l.bg}" onclick="triggerPortraitUpload('${l.id}')">
         <div class="exhibit-num-badge">Exhibit 0${i+1}</div>
         <div class="portrait-placeholder" id="portrait-${l.id}">
-          ${l.portrait
-            ? `<img src="${l.portrait}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">`
-            : `<div style="font-size:80px;opacity:0.15">${['🎵','⛳','✊','👔'][i]}</div>
-               <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2)">Click to add portrait</div>`
-          }
+          ${l.portrait ? '<img src="'+l.portrait+'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1">' : '<div style="font-size:80px;opacity:0.15">'+(['🎵','⛳','✊','👔'][i])+'</div><div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2)">Click to add portrait</div>'}
         </div>
         <div class="spotlight-overlay"></div>
         <input type="file" accept="image/*,video/*" id="portrait-file-${l.id}" style="display:none" onchange="handlePortrait(event,'${l.id}')">
