@@ -563,6 +563,7 @@ const leaders = [
     location:'Atlanta, Georgia',
     bg:'linear-gradient(160deg,#1A1208,#3D2A0A)',
     accent:'#C9A84C',
+    portrait:'https://res.cloudinary.com/dzobxszbv/image/upload/v1774099567/1_kx5wV9Ja4Us0yDh64GIO5A_mzi9tt.jpg',
     videos:[
       {title:'What world did he walk into?',desc:'Marcus — Atlanta Teen',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774098915/D06C1BAC-4A2B-4BDF-BBF5-2CC1B9F9ACBC_dowgpt.mov'},
       {title:'How did he push back?',desc:'Dominique — Music Journalist',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774098936/EC170214-C9C1-4BE9-A26C-E306AFB4B6E2_njrd3e.mov'},
@@ -648,8 +649,11 @@ function buildExhibits(){
       <div class="exhibit-visual" style="background:${l.bg}" onclick="triggerPortraitUpload('${l.id}')">
         <div class="exhibit-num-badge">Exhibit 0${i+1}</div>
         <div class="portrait-placeholder" id="portrait-${l.id}">
-          <div style="font-size:80px;opacity:0.15">${['🎵','⛳','✊','👔'][i]}</div>
-          <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2)">Click to add portrait</div>
+          ${l.portrait
+            ? `<img src="${l.portrait}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">`
+            : `<div style="font-size:80px;opacity:0.15">${['🎵','⛳','✊','👔'][i]}</div>
+               <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2)">Click to add portrait</div>`
+          }
         </div>
         <div class="spotlight-overlay"></div>
         <input type="file" accept="image/*,video/*" id="portrait-file-${l.id}" style="display:none" onchange="handlePortrait(event,'${l.id}')">
