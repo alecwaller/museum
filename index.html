@@ -564,10 +564,9 @@ const leaders = [
     bg:'linear-gradient(160deg,#1A1208,#3D2A0A)',
     accent:'#C9A84C',
     videos:[
-      {title:'Who Is André 3000?',desc:'Introduction & early life'},
-      {title:'OutKast & the Southern Sound',desc:'Musical breakthrough'},
-      {title:'Fashion as Leadership',desc:'Defying norms through style'},
-      {title:'His Legacy Today',desc:'Influence on modern culture'},
+      {title:'What world did he walk into?',desc:'Marcus — Atlanta Teen',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774098915/D06C1BAC-4A2B-4BDF-BBF5-2CC1B9F9ACBC_dowgpt.mov'},
+      {title:'How did he push back?',desc:'Dominique — Music Journalist',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774098936/EC170214-C9C1-4BE9-A26C-E306AFB4B6E2_njrd3e.mov'},
+      {title:'What did he leave behind?',desc:'Jordan — Music Producer',url:''},
     ]
   },
   {
@@ -580,10 +579,9 @@ const leaders = [
     bg:'linear-gradient(160deg,#0A1018,#0D2535)',
     accent:'#4A8CB5',
     videos:[
-      {title:'The Making of Tiger',desc:'Early life & path to golf'},
-      {title:'The 1997 Masters',desc:'Shattering barriers on day one'},
-      {title:'Setbacks & the Comeback',desc:'Resilience as leadership'},
-      {title:"Tiger's Lasting Impact",desc:'Golf, race, and legacy'},
+      {title:'What world did he walk into?',desc:'James — Veteran Caddie',url:''},
+      {title:'How did he push back?',desc:'David — Sports Journalist',url:''},
+      {title:'What did he leave behind?',desc:'Malik — Young Golfer',url:''},
     ]
   },
   {
@@ -596,10 +594,9 @@ const leaders = [
     bg:'linear-gradient(160deg,#120808,#2D1010)',
     accent:'#B55A4A',
     videos:[
-      {title:'Who Is Kaepernick?',desc:'From foster care to the NFL'},
-      {title:'The Moment He Knelt',desc:'2016 and the national reaction'},
-      {title:'The Price of Principle',desc:'Blacklisting & the Nike deal'},
-      {title:"A Movement's Impact",desc:'How the world responded'},
+      {title:'What world did he walk into?',desc:'Aaliyah — College Student',url:''},
+      {title:'How did he push back?',desc:'Darnell — Retired NFL Player',url:''},
+      {title:'What did he leave behind?',desc:'Dr. Harris — Civil Rights Professor',url:''},
     ]
   },
   {
@@ -612,10 +609,9 @@ const leaders = [
     bg:'linear-gradient(160deg,#100A18,#221530)',
     accent:'#9A7AB5',
     videos:[
-      {title:'A Life in Fashion',desc:'From Durham to Vogue'},
-      {title:'Breaking into the Industry',desc:'Race, power & fashion'},
-      {title:'His Vision & Voice',desc:'What he stood for'},
-      {title:'The Legacy He Left',desc:'Impact on fashion & Black culture'},
+      {title:'What world did he walk into?',desc:'Imani — Fashion Student',url:''},
+      {title:'How did he push back?',desc:'Raymond — Fashion Designer',url:''},
+      {title:'What did he leave behind?',desc:'Gloria — Elder Community Member',url:''},
     ]
   }
 ];
@@ -687,19 +683,23 @@ function buildExhibits(){
 
 function buildVideoSlot(lid,vi,v){
   const key=`${lid}-${vi}`;
-  const hasVid=!!videoBlobs[key];
+  const hasBlob=!!videoBlobs[key];
+  const hostedUrl=v.url||'';
+  const hasVid=hasBlob||!!hostedUrl;
+  const videoSrc=hasBlob?URL.createObjectURL(videoBlobs[key]):hostedUrl;
   return `
   <div class="video-slot" id="slot-${key}">
     <div class="video-slot-header">
-      <span class="slot-num">Video ${vi+1}</span>
+      <span class="slot-num" style="font-size:9px;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${v.title}</span>
       <span class="slot-status ${hasVid?'filled':''}" id="status-${key}">${hasVid?'● Ready':'○ Empty'}</span>
     </div>
+    <div style="font-size:10px;color:var(--muted);padding:4px 14px 0;letter-spacing:.5px">${v.desc}</div>
     <div class="video-thumb" id="thumb-${key}">
       ${hasVid
-        ?`<video src="${URL.createObjectURL(videoBlobs[key])}" controls style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>`
+        ?`<video src="${videoSrc}" controls style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>`
         :`<div class="thumb-empty">
             <div class="thumb-play">▶</div>
-            <div class="thumb-label">${v.title}</div>
+            <div class="thumb-label">No video yet</div>
           </div>`}
     </div>
     <div class="slot-actions">
