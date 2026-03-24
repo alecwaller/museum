@@ -228,9 +228,9 @@ const leaders=[
     roles:'NFL Quarterback · Civil Rights Activist',
     bio:'Starting quarterback for the San Francisco 49ers who became a global symbol of resistance. In 2016 began kneeling during the national anthem to protest police brutality and racial injustice — a quiet act that ignited a worldwide movement. Known for sacrificing his NFL career for his principles. Later became the face of the Nike Just Do It campaign.',
     videos:[
-      {title:'What world did he walk into?',desc:'Aaliyah — College Student',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774317486/ColinKap01_1080p_caption_xl2izn.mp4'},
-      {title:'How did he push back?',desc:'Darnell — Retired NFL Player',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774317485/ColinKap02_with_captions_orcumw.mp4'},
-      {title:'What did he leave behind?',desc:'Dr. Harris — Civil Rights Professor',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774317491/ColinKapernick3_with_captions_ijjpoa.mp4'}
+      {title:'What world did he walk into?',desc:'Training Partner',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774317486/ColinKap01_1080p_caption_xl2izn.mp4'},
+      {title:'How did he push back?',desc:'Dr. Harris — Civil Rights Professor',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774317485/ColinKap02_with_captions_orcumw.mp4'},
+      {title:'What did he leave behind?',desc:'College Athlete',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774317491/ColinKapernick3_with_captions_ijjpoa.mp4'}
     ]
   },
   {
@@ -246,9 +246,9 @@ const leaders=[
     roles:'Fashion Editor · Author · Cultural Ambassador',
     bio:'One of the most powerful figures in fashion history. Served as Editor-at-Large and Creative Director of Vogue — the first African American to hold that role. Known for his commanding presence, his signature caftans, and his decades-long influence on global fashion. Used his platform to open doors for Black designers, models, and creatives at the highest levels of the industry.',
     videos:[
-      {title:'What world did he walk into?',desc:'Imani — Fashion Student',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774303266/Andreleon1_with_captions_tnw3wl.mp4'},
-      {title:'How did he push back?',desc:'Raymond — Fashion Designer',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774303271/Andreleon2_with_captions_k9jwuz.mp4'},
-      {title:'What did he leave behind?',desc:'Gloria — Elder Community Member',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774303822/Andreleon3_t7dvzc.mp4'}
+      {title:'What world did he walk into?',desc:'Former Vogue Employee',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774303266/Andreleon1_with_captions_tnw3wl.mp4'},
+      {title:'How did he push back?',desc:'Photographer',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774303271/Andreleon2_with_captions_k9jwuz.mp4'},
+      {title:'What did he leave behind?',desc:'Fashion Student',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774303822/Andreleon3_t7dvzc.mp4'}
     ]
   }
 ];
@@ -324,7 +324,7 @@ function buildVideoSlot(lid,vi,v,accent){
       <span class="slot-num">${v.title}</span>
       <span class="slot-status ${hasVid?'filled':''}" id="status-${key}">${hasVid?'● Ready':'○ Empty'}</span>
     </div>
-    <div style="font-size:10px;color:#6B6456;padding:4px 14px 0">${v.desc}</div>
+
     <div class="video-thumb" id="thumb-${key}">
       ${hasVid?`<video src="${videoSrc}" controls style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>`:`<div class="thumb-empty"><div class="thumb-play">&#9658;</div><div class="thumb-label">No video yet</div></div>`}
     </div>
