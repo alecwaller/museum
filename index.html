@@ -133,6 +133,9 @@ nav{padding:16px 20px}
 </div>
 <div id="site">
 <div id="transition">
+  <div style="position:absolute;top:24px;right:32px">
+    <button onclick="skipTransition()" style="background:transparent;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.4);font-size:10px;letter-spacing:2px;text-transform:uppercase;font-family:Inter,sans-serif;padding:8px 18px;cursor:pointer;transition:all .2s" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)';this.style.color='rgba(255,255,255,0.4)'">Skip</button>
+  </div>
   <div id="trans-text" style="display:flex;flex-direction:column;align-items:center;gap:4px;max-width:680px;text-align:center"></div>
 </div>
   <nav>
@@ -299,6 +302,16 @@ function enterMuseum(){
     document.getElementById('site').style.display='block';
     showTransition();
   },1000);
+}
+
+function skipTransition(){
+  const trans=document.getElementById('transition');
+  trans.style.transition='opacity 0.8s ease';
+  trans.style.opacity='0';
+  setTimeout(()=>{
+    trans.style.display='none';
+    buildExhibits();
+  },800);
 }
 
 function showTransition(){
