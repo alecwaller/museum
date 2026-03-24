@@ -139,10 +139,10 @@ nav{padding:16px 20px}
   <section id="hero">
     <div class="hero-bg"></div>
     <div class="hero-content">
-      <div class="hero-eyebrow">Breaking Barriers &amp; Defying Expectations</div>
+      <div class="hero-eyebrow">A Leadership Exhibition · Morehouse College</div>
       <h1 class="hero-title">Four Men.<br><em>One Refusal.</em></h1>
       <div class="hero-divider"></div>
-      <p class="hero-body">These four men came from different worlds — music, sport, activism, fashion. Each faced the same pressure: to shrink, to conform, to be what the world decided they should be. None of them did.</p>
+      <p class="hero-body">From the golf courses of Augusta to the runways of Paris. From the stadiums of the NFL to the recording studios of Atlanta. These four Black men entered spaces that were not built for them — and refused to leave on anyone else's terms. This is not a story about fame. It is a story about what happens when you lead from exactly who you are.</p>
       <div class="context-grid">
         <div class="context-item" onclick="scrollToExhibit(0)"><div class="context-num">01</div><div class="context-name">André 3000</div><div class="context-field">Music &amp; Culture</div></div>
         <div class="context-item" onclick="scrollToExhibit(1)"><div class="context-num">02</div><div class="context-name">Tiger Woods</div><div class="context-field">Sport</div></div>
@@ -156,8 +156,28 @@ nav{padding:16px 20px}
     <div style="font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:16px;">The Collective Legacy</div>
     <h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,44px)">How the World Changed</h2>
     <div class="impact-grid">
-      <div class="impact-card" style="grid-column:1/-1;text-align:center;padding:60px;color:var(--muted);font-style:italic;font-size:14px">Four different fields. Four different sacrifices. One shared refusal to be anything less than exactly who they were. That is leadership.</div>
+      <div class="impact-card">
+        <div class="impact-leader" style="color:#C9A84C">André 3000</div>
+        <div class="impact-quote">"The South got something to say."</div>
+        <div class="impact-legacy">Cracked the ceiling for Southern hip hop and redefined what Black masculinity could look like in American music. Every Atlanta artist who came after him built on the foundation he laid. Artists like Kendrick Lamar, Frank Ocean, and Childish Gambino have all cited him as a direct influence on their willingness to defy genre and expectation.</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-leader" style="color:#4A8CB5">Tiger Woods</div>
+        <div class="impact-quote">"No matter how good you get, you can always get better."</div>
+        <div class="impact-legacy">Transformed golf from an elite white sport into a global phenomenon. During his peak years PGA Tour prize money more than doubled and television ratings increased by over 40 percent. His TGR Foundation has reached over 15 million young people with education and opportunity. He changed who golf is for — permanently.</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-leader" style="color:#B55A4A">Colin Kaepernick</div>
+        <div class="impact-quote">"I am not going to stand up to show pride in a flag for a country that oppresses Black people."</div>
+        <div class="impact-legacy">One silent act of kneeling became a global symbol of resistance. Athletes across every sport and country took up the gesture. Nike made him the face of their Just Do It campaign. He sacrificed his NFL career for a principle — and history will place him alongside Muhammad Ali and Tommie Smith as athletes who chose conscience over comfort.</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-leader" style="color:#9A7AB5">André Leon Talley</div>
+        <div class="impact-quote">"Create your own vision. Don't imitate."</div>
+        <div class="impact-legacy">As the first Black Creative Director at Vogue he opened doors in an industry that had been sealed shut. He used his platform to champion Black designers, diversify runway shows, and prove that Black presence in luxury was not an exception but a birthright. An entire generation of Black fashion creatives owes part of their access to the space he carved.</div>
+      </div>
     </div>
+    <p class="impact-closing">Four different fields. Four different sacrifices. One shared refusal to be anything less than exactly who they were. That is leadership.</p>
   </section>
 </div>
 <div class="modal" id="rec-modal">
@@ -191,6 +211,7 @@ const leaders=[
     portrait:'https://res.cloudinary.com/dzobxszbv/image/upload/v1774099567/1_kx5wV9Ja4Us0yDh64GIO5A_mzi9tt.jpg',
     roles:'Rapper · Producer · Fashion Icon · Actor',
     bio:'One half of OutKast. Known for pushing hip hop beyond its boundaries — blending funk, jazz, soul and rap into something entirely his own. Won the Grammy for Album of the Year with Speakerboxxx/The Love Below. Widely regarded as one of the greatest rappers of all time. Known for his eccentric personal style, emotional depth, and refusal to conform to what the industry expected of a Black artist from the South.',
+    excerpt:'"Don&#39;t everybody like the smell of gasoline? Well burn, motherf***er, burn, American dreams." — Gasoline Dreams, 2000',
     videos:[
       {title:'What world did he walk into?',desc:'Marcus — Atlanta Teen',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774098915/D06C1BAC-4A2B-4BDF-BBF5-2CC1B9F9ACBC_dowgpt.mov'},
       {title:'How did he push back?',desc:'Dominique — Music Journalist',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774098936/EC170214-C9C1-4BE9-A26C-E306AFB4B6E2_njrd3e.mov'},
@@ -209,6 +230,7 @@ const leaders=[
     portrait:'https://res.cloudinary.com/dzobxszbv/image/upload/v1774304360/Tiger-Woods-2002.jpg_yqiogx.webp',
     roles:'Professional Golfer',
     bio:'Widely considered the greatest golfer of all time. Won 15 major championships and 82 PGA Tour titles. Became the first person of Black and Asian descent to win the Masters in 1997 — by the largest margin in tournament history. Known for his relentless competitive drive, mental toughness, and a 2019 comeback that many called the greatest in sports history.',
+    excerpt:'"I&#39;ve always felt like I had to prove myself. And the golf course was the one place where it didn&#39;t matter what color you were — all that mattered was what was on the scorecard." — Tiger Woods',
     videos:[
       {title:'What world did he walk into?',desc:'James — Veteran Caddie',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774303346/Tigerwoods1_1080p_caption_aqe0up.mp4'},
       {title:'How did he push back?',desc:'David — Sports Journalist',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774303343/Tigerwoods2_with_captions_yakyuz.mp4'},
@@ -227,6 +249,7 @@ const leaders=[
     portrait:'https://res.cloudinary.com/dzobxszbv/image/upload/v1774317470/colin-kaepernick.jpg_xzxzba.webp',
     roles:'NFL Quarterback · Civil Rights Activist',
     bio:'Starting quarterback for the San Francisco 49ers who became a global symbol of resistance. In 2016 began kneeling during the national anthem to protest police brutality and racial injustice — a quiet act that ignited a worldwide movement. Known for sacrificing his NFL career for his principles. Later became the face of the Nike Just Do It campaign.',
+    excerpt:'"I am not going to stand up to show pride in a flag for a country that oppresses Black people and people of color. To me, this is bigger than football and it would be selfish on my part to look the other way." — Colin Kaepernick, August 2016',
     videos:[
       {title:'What world did he walk into?',desc:'Training Partner',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774317486/ColinKap01_1080p_caption_xl2izn.mp4'},
       {title:'How did he push back?',desc:'Dr. Harris — Civil Rights Professor',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774317485/ColinKap02_with_captions_orcumw.mp4'},
@@ -245,6 +268,7 @@ const leaders=[
     portrait:'https://res.cloudinary.com/dzobxszbv/image/upload/v1774304328/Andre_Leon_Talley_at_the_2009_Tribeca_Film_Festival_nn4kif.jpg',
     roles:'Fashion Editor · Author · Cultural Ambassador',
     bio:'One of the most powerful figures in fashion history. Served as Editor-at-Large and Creative Director of Vogue — the first African American to hold that role. Known for his commanding presence, his signature caftans, and his decades-long influence on global fashion. Used his platform to open doors for Black designers, models, and creatives at the highest levels of the industry.',
+    excerpt:'"I was never going to make myself smaller to make others comfortable. I took up space. I was supposed to take up space." — André Leon Talley, The Chiffon Trenches, 2020',
     videos:[
       {title:'What world did he walk into?',desc:'Former Vogue Employee',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774303266/Andreleon1_with_captions_tnw3wl.mp4'},
       {title:'How did he push back?',desc:'Photographer',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774303271/Andreleon2_with_captions_k9jwuz.mp4'},
@@ -298,6 +322,7 @@ function buildExhibits(){
                 <div class="ai-section-label">About</div>
                 <div class="ai-section-text">${l.bio}</div>
               </div>
+              ${l.excerpt ? '<div style="border-left:2px solid '+l.accent+';padding:12px 0 12px 20px;margin-top:20px;font-family:Playfair Display,serif;font-style:italic;font-size:13px;color:rgba(255,255,255,0.6);line-height:1.7">'+l.excerpt+'</div>' : ''}
             </div>
           </div>
           <div class="video-section">
@@ -328,11 +353,7 @@ function buildVideoSlot(lid,vi,v,accent){
     <div class="video-thumb" id="thumb-${key}">
       ${hasVid?`<video src="${videoSrc}" controls style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>`:`<div class="thumb-empty"><div class="thumb-play">&#9658;</div><div class="thumb-label">No video yet</div></div>`}
     </div>
-    <div class="slot-actions">
-      <button class="slot-btn" onclick="triggerVideoUpload('${lid}',${vi})">&#8593; Upload</button>
-      <button class="slot-btn primary" onclick="openRecModal('${lid}',${vi},'${v.title}')">&#9210; Record</button>
-    </div>
-    <input type="file" accept="video/*" id="vid-file-${key}" style="display:none" onchange="handleVideoUpload(event,'${lid}',${vi})">
+
   </div>`;
 }
 
