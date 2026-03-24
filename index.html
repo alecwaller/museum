@@ -22,6 +22,12 @@ body{background:var(--black);color:var(--white);font-family:'Inter',sans-serif;o
 #intro.show .enter-btn{opacity:1}
 .enter-btn:hover{background:var(--gold);color:#000}
 #site{display:none}
+#transition{position:fixed;inset:0;z-index:900;background:#000;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px;}
+#transition.show{display:flex}
+.trans-line{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(16px,2.5vw,26px);color:var(--white);max-width:700px;line-height:1.8;opacity:0;transform:translateY(16px);transition:opacity 1s ease,transform 1s ease;}
+#transition.show .trans-line{opacity:1;transform:translateY(0)}
+.trans-word{display:inline;color:var(--white);}
+.trans-word.gold{color:var(--gold);}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 40px;background:linear-gradient(to bottom,rgba(0,0,0,0.9),transparent);pointer-events:none;}
 .nav-logo{font-family:'Playfair Display',serif;font-size:15px;color:var(--white);letter-spacing:1px;pointer-events:all;cursor:pointer;}
 .nav-links{display:flex;gap:32px;pointer-events:all}
@@ -42,7 +48,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .context-name{font-size:13px;font-weight:500;color:var(--white);margin-bottom:4px;}
 .context-field{font-size:11px;color:var(--gold);letter-spacing:1px}
 .exhibit{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--border);position:relative;}
-.exhibit-visual{position:relative;overflow:hidden;height:600px;max-height:600px;display:flex;align-items:center;justify-content:center;background:#0a0a0a;}
+.exhibit-visual{position:relative;overflow:hidden;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;background:#0a0a0a;}
 .portrait-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;position:relative;}
 .portrait-placeholder img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;z-index:1;}
 .portrait-upload-zone{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);opacity:0;transition:opacity .2s;cursor:pointer;z-index:2;}
@@ -126,6 +132,10 @@ nav{padding:16px 20px}
   <button class="enter-btn" onclick="enterMuseum()">Enter the Museum &rarr;</button>
 </div>
 <div id="site">
+<div id="transition">
+  <p class="trans-line" id="trans-text"></p>
+  <div style="width:40px;height:1px;background:var(--gold);margin:32px auto;opacity:0;transition:opacity 1s ease 3s" id="trans-line"></div>
+</div>
   <nav>
     <div class="nav-logo" onclick="scrollTo({top:0,behavior:'smooth'})">Museum of Leadership</div>
     <div class="nav-links">
@@ -213,9 +223,9 @@ const leaders=[
     bio:'One half of OutKast. Known for pushing hip hop beyond its boundaries — blending funk, jazz, soul and rap into something entirely his own. Won the Grammy for Album of the Year with Speakerboxxx/The Love Below. Widely regarded as one of the greatest rappers of all time. Known for his eccentric personal style, emotional depth, and refusal to conform to what the industry expected of a Black artist from the South.',
     excerpt:'"Don&#39;t everybody like the smell of gasoline? Well burn, motherf***er, burn, American dreams." — Gasoline Dreams, 2000',
     videos:[
-      {title:'What world did he walk into?',desc:'Marcus — Atlanta Teen',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774098915/D06C1BAC-4A2B-4BDF-BBF5-2CC1B9F9ACBC_dowgpt.mov'},
-      {title:'How did he push back?',desc:'Dominique — Music Journalist',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774098936/EC170214-C9C1-4BE9-A26C-E306AFB4B6E2_njrd3e.mov'},
-      {title:'What did he leave behind?',desc:'Jordan — Music Producer',url:''}
+      {title:'What world did he walk into?',desc:'Marcus — Atlanta Teen',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774353896/Andre3k1_1080p_caption_rg6azn.mp4'},
+      {title:'How did he push back?',desc:'Dominique — Music Journalist',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774354150/Andre3k2_1080p_caption_buhxe1.mp4'},
+      {title:'What did he leave behind?',desc:'Jordan — Music Producer',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774355584/Andre3k3_1080p_caption_okpkbf.mp4'}
     ]
   },
   {
@@ -288,8 +298,57 @@ function enterMuseum(){
   setTimeout(()=>{
     intro.style.display='none';
     document.getElementById('site').style.display='block';
-    buildExhibits();
+    showTransition();
   },1000);
+}
+
+function showTransition(){
+  const trans=document.getElementById('transition');
+  trans.classList.add('show');
+  document.getElementById('trans-line').style.opacity='1';
+
+  const sentences=[
+    "These four men came from completely different worlds —",
+    "music, sport, activism, fashion.",
+    "But they all faced the same thing.",
+    "Spaces that were built to exclude them.",
+    "Industries that had already decided who belonged and who didn’t.",
+    "And all four of them walked in anyway —",
+    "and refused to be defined by anyone else’s expectations.",
+    "That is the thread.",
+    "That is what connects them."
+  ];
+
+  const el=document.getElementById('trans-text');
+  let i=0;
+  el.textContent='';
+
+  function showNext(){
+    if(i===0) el.textContent='';
+    if(i<sentences.length){
+      el.style.opacity='0';
+      el.style.transform='translateY(12px)';
+      setTimeout(()=>{
+        el.textContent=sentences[i];
+        el.style.transition='opacity 0.8s ease, transform 0.8s ease';
+        el.style.opacity='1';
+        el.style.transform='translateY(0)';
+        i++;
+        const delay = sentences[i-1].length < 25 ? 1800 : 2400;
+        setTimeout(showNext, delay);
+      },300);
+    } else {
+      setTimeout(()=>{
+        trans.style.transition='opacity 1.2s ease';
+        trans.style.opacity='0';
+        setTimeout(()=>{
+          trans.style.display='none';
+          buildExhibits();
+        },1200);
+      },1500);
+    }
+  }
+  showNext();
 }
 
 function buildExhibits(){
