@@ -227,7 +227,8 @@ const leaders=[
     videos:[
       {title:'What world did he walk into?',desc:'Marcus — Atlanta Teen',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774525675/Andre3000video1_l6qyj4.mp4'},
       {title:'How did he push back?',desc:'Dominique — Music Journalist',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774526331/Andre3000video2_ctdmv7.mp4'},
-      {title:'What did he leave behind?',desc:'Jordan — Music Producer',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774526328/Andre3000video3_fmfkmk.mp4'}
+      {title:'What did he leave behind?',desc:'Jordan — Music Producer',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774526328/Andre3000video3_fmfkmk.mp4'},
+      {title:'In His Own Words',desc:'André 3000',url:'https://res.cloudinary.com/dzobxszbv/image/upload/v1774528657/andre-3000-promo.jpg_outaza.webp'}
     ]
   },
   {
@@ -246,7 +247,8 @@ const leaders=[
     videos:[
       {title:'What world did he walk into?',desc:'James — Veteran Caddie',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774525662/Tigerwoodsvideo1_vuktvq.mp4'},
       {title:'How did he push back?',desc:'David — Sports Journalist',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774525657/Tigerwoodsvideo2_sb4ymq.mp4'},
-      {title:'What did he leave behind?',desc:'Malik — Young Golfer',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774525664/Tigerwoodsvideo3_chbc0k.mp4'}
+      {title:'What did he leave behind?',desc:'Malik — Young Golfer',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774525664/Tigerwoodsvideo3_chbc0k.mp4'},
+      {title:'In His Own Words',desc:'Tiger Woods',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774528347/AQO5-0YNS7_iPoZoAVovsnJ224RQFp6rVunOYYLLKMGCsfSAx0IjZkj2UcyrU8baLJLouV1koI4iaOOVVLzgEO1YqQS36GrQVw05deY_yaj5ql.mov'}
     ]
   },
   {
@@ -265,7 +267,9 @@ const leaders=[
     videos:[
       {title:'What world did he walk into?',desc:'Training Partner',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774525661/ColinKapernick_Video_1_mws1sn.mp4'},
       {title:'How did he push back?',desc:'Dr. Harris — Civil Rights Professor',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774525670/ColinKapernickVideo2_xipeiv.mp4'},
-      {title:'What did he leave behind?',desc:'College Athlete',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774525671/ColinKapernickvideo3_nfhs7o.mp4'}
+      {title:'What did he leave behind?',desc:'College Athlete',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774525671/ColinKapernickvideo3_nfhs7o.mp4'},
+      {title:'In His Own Words',desc:'Colin Kaepernick',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774528199/v12044gd0000d5ug0kfog65i8o88lt20_pcxzft.mov'},
+      {title:'The Moment',desc:'The Kneeling',url:'https://res.cloudinary.com/dzobxszbv/image/upload/v1774528404/merlin_144253599_9c2c509e-3e32-45af-a31c-1bf1535b42dd-superJumbo_nwjmrz.jpg'}
     ]
   },
   {
@@ -284,7 +288,8 @@ const leaders=[
     videos:[
       {title:'What world did he walk into?',desc:'Former Vogue Employee',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774527661/Andreleonvideo1_ixwbpm.mp4'},
       {title:'How did he push back?',desc:'Photographer',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774527666/Andreleonvideo2_xhvvlm.mp4'},
-      {title:'What did he leave behind?',desc:'Fashion Student',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774527667/Andreleonvideo3_r7osnz.mp4'}
+      {title:'What did he leave behind?',desc:'Fashion Student',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774527667/Andreleonvideo3_r7osnz.mp4'},
+      {title:'In His Own Words',desc:'André Leon Talley',url:'https://res.cloudinary.com/dzobxszbv/video/upload/v1774528118/v24044gl0000d4hltvvog65hckmplmfg_h1i3ny.mp4'}
     ]
   }
 ];
@@ -430,7 +435,7 @@ function buildVideoSlot(lid,vi,v,accent){
     </div>
 
     <div class="video-thumb" id="thumb-${key}">
-      ${hasVid?`<video src="${videoSrc}" controls style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>`:`<div class="thumb-empty"><div class="thumb-play">&#9658;</div><div class="thumb-label">No video yet</div></div>`}
+      ${hasVid?(videoSrc.match(/\.(jpg|jpeg|png|webp|gif)/i)?`<img src="${videoSrc}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">`:`<video src="${videoSrc}" controls style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>`):`<div class="thumb-empty"><div class="thumb-play">&#9658;</div><div class="thumb-label">No video yet</div></div>`}
     </div>
 
   </div>`;
@@ -458,12 +463,16 @@ function handleVideoUpload(e,lid,vi){
 }
 function refreshVideoSlot(lid,vi){
   const key=lid+'-'+vi;
-  const l=leaders.find(x=>x.id===lid);
-  const v=l.videos[vi];
   const thumb=document.getElementById('thumb-'+key);
   const status=document.getElementById('status-'+key);
   if(videoBlobs[key]){
-    thumb.innerHTML=`<video src="${URL.createObjectURL(videoBlobs[key])}" controls style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>`;
+    const file=videoBlobs[key];
+    const url=URL.createObjectURL(file);
+    if(file.type.startsWith('image/')){
+      thumb.innerHTML='<img src="'+url+'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">';
+    } else {
+      thumb.innerHTML='<video src="'+url+'" controls style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>';
+    }
     status.textContent='● Ready';
     status.className='slot-status filled';
   }
