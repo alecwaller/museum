@@ -222,6 +222,7 @@ const leaders=[
     accent:'#C9A84C',
     portrait:'https://res.cloudinary.com/dzobxszbv/image/upload/v1774321830/Firefly_Gemini_Flash_-Cinematic_portrait_photograph_16-9_horizontal_Andr%C3%A9_3000_medium_shot_waist_to_head_293566_xh1nrw.png',
     roles:'Rapper · Producer · Fashion Icon · Actor',
+    ledon:'Rapper & artist who led on redefining Black masculinity and refusing cultural conformity.',
     bio:'One half of OutKast. Known for pushing hip hop beyond its boundaries — blending funk, jazz, soul and rap into something entirely his own. Won the Grammy for Album of the Year with Speakerboxxx/The Love Below. Widely regarded as one of the greatest rappers of all time. Known for his eccentric personal style, emotional depth, and refusal to conform to what the industry expected of a Black artist from the South.',
     excerpt:'"Don&#39;t everybody like the smell of gasoline? Well burn, motherf***er, burn, American dreams." — Gasoline Dreams, 2000',
     videos:[
@@ -242,6 +243,7 @@ const leaders=[
     accent:'#4A8CB5',
     portrait:'https://res.cloudinary.com/dzobxszbv/image/upload/v1774321865/Firefly_Gemini_Flash_Cinematic_portrait_photograph_Tiger_Woods_medium_shot_waist_to_head_pure_deep_navy_85050_otlmve.png',
     roles:'Professional Golfer',
+    ledon:'Professional golfer who led on breaking racial barriers in elite sport and transforming who the game belongs to.',
     bio:'Widely considered the greatest golfer of all time. Won 15 major championships and 82 PGA Tour titles. Became the first person of Black and Asian descent to win the Masters in 1997 — by the largest margin in tournament history. Known for his relentless competitive drive, mental toughness, and a 2019 comeback that many called the greatest in sports history.',
     excerpt:'"I&#39;ve always felt like I had to prove myself. And the golf course was the one place where it didn&#39;t matter what color you were — all that mattered was what was on the scorecard." — Tiger Woods',
     videos:[
@@ -262,6 +264,7 @@ const leaders=[
     accent:'#B55A4A',
     portrait:'https://res.cloudinary.com/dzobxszbv/image/upload/v1774321865/Firefly_Gemini_Flash_Cinematic_portrait_photograph_l_Colin_Kaepernick_medium_shot_waist_to_head_pure_de_475225_pexlyd.png',
     roles:'NFL Quarterback · Civil Rights Activist',
+    ledon:'NFL quarterback who led on racial justice and proved that principle matters more than career.',
     bio:'Starting quarterback for the San Francisco 49ers who became a global symbol of resistance. In 2016 began kneeling during the national anthem to protest police brutality and racial injustice — a quiet act that ignited a worldwide movement. Known for sacrificing his NFL career for his principles. Later became the face of the Nike Just Do It campaign.',
     excerpt:'"I am not going to stand up to show pride in a flag for a country that oppresses Black people and people of color. To me, this is bigger than football and it would be selfish on my part to look the other way." — Colin Kaepernick, August 2016',
     videos:[
@@ -283,6 +286,7 @@ const leaders=[
     accent:'#9A7AB5',
     portrait:'https://res.cloudinary.com/dzobxszbv/image/upload/v1774321866/Firefly_Gemini_Flash_Cinematic_portrait_photograph_Andr%C3%A9_Leon_Talley_medium_shot_waist_to_head_pure_de_501312_jmdy3s.png',
     roles:'Fashion Editor · Author · Cultural Ambassador',
+    ledon:'Fashion editor who led on Black representation in luxury spaces and expanding who gets to hold cultural power.',
     bio:'One of the most powerful figures in fashion history. Served as Editor-at-Large and Creative Director of Vogue — the first African American to hold that role. Known for his commanding presence, his signature caftans, and his decades-long influence on global fashion. Used his platform to open doors for Black designers, models, and creatives at the highest levels of the industry.',
     excerpt:'"I was never going to make myself smaller to make others comfortable. I took up space. I was supposed to take up space." — André Leon Talley, The Chiffon Trenches, 2020',
     videos:[
@@ -424,6 +428,7 @@ function buildExhibits(){
                 <div class="ai-section-label">Roles</div>
                 <div class="ai-section-text" style="color:${l.accent};font-size:12px;letter-spacing:.5px">${l.roles}</div>
               </div>
+               \${l.ledon ? '<div style="margin-top:16px;padding:12px 16px;border-left:2px solid '+l.accent+';background:rgba(255,255,255,0.03)"><div style="font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#6B6456;font-weight:500;margin-bottom:6px">LED ON</div><div style="font-size:14px;color:rgba(255,255,255,0.85);line-height:1.6;font-style:italic;font-family:Playfair Display,serif">'+l.ledon+'</div></div>' : ''}
               <div class="ai-section" style="margin-top:16px">
                 <div class="ai-section-label">About</div>
                 <div class="ai-section-text">${l.bio}</div>
